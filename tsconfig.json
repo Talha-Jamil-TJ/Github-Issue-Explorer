@@ -13,7 +13,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@store/*": ["./src/app/store/*"],
+      "@shared/*": ["./src/app/shared/*"]
+    },
     "useDefineForClassFields": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
