@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApolloService } from '@shared/service/apollo.service';
 import { gql } from 'apollo-angular';
-import { finalize, tap } from 'rxjs';
+import { finalize, map, tap } from 'rxjs';
 import { TokenStore } from './toke.store';
 
 @Injectable({ providedIn: 'root' })
@@ -33,6 +33,7 @@ export class TokenService {
             this._tokenStore.setError(err.message);
           },
         }),
+        map((res) => res.data),
         finalize(() => {
           this._tokenStore.setLoading(false);
         }),

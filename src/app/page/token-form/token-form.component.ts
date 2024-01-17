@@ -4,10 +4,11 @@ import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { Error } from '@shared/enum/error.enum';
+import { FormError } from '@shared/enum/error.enum';
 import { BreakpointService } from '@shared/service/breakpoint.service';
 import { TokenQuery } from '@store/token/token.query';
 import { TokenService } from '@store/token/token.service';
+import { TokenFormTestId } from './token-form-test-id.enum';
 
 @Component({
   selector: 'app-token-form',
@@ -23,7 +24,8 @@ export class TokenFormComponent implements OnInit {
 
   isLoading = this._tokenQuery.isLoading;
 
-  Error = Error;
+  TestId = TokenFormTestId;
+  FormError = FormError;
 
   constructor(
     private _breakpointService: BreakpointService,
@@ -43,7 +45,7 @@ export class TokenFormComponent implements OnInit {
     this._tokenService.getUser(this.tokenControl.value ?? '').subscribe({
       next: () => {},
       error: () => {
-        this.tokenControl.setErrors({ ...this.tokenControl.errors, [this.Error.InvalidToken]: true });
+        this.tokenControl.setErrors({ ...this.tokenControl.errors, [this.FormError.InvalidToken]: true });
       },
     });
   }

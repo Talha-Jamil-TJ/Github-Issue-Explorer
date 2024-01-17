@@ -9,6 +9,7 @@
     "prettier:check": "prettier --check \"**/*.{ts,html,scss}\" --config .prettierrc",
     "prettier:write": "prettier --write \"**/*.{ts,html,scss}\" --config .prettierrc",
     "test": "nx test",
+    "test:watch": "nx test --watch",
     "prepare": "husky install"
   },
   "private": true,

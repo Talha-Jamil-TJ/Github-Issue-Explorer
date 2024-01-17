@@ -21,6 +21,8 @@ export class ApolloService {
       this._removePreviousClient();
 
       this._createNewClient(newToken);
+
+      this._tokenStore.update({ token: newToken });
     }
 
     return this._apollo.use(this.token());
@@ -36,7 +38,5 @@ export class ApolloService {
     this._apollo.createNamed(token, {
       ...apolloOptionsFactory(this.httpLink),
     });
-
-    this._tokenStore.update({ token });
   }
 }
