@@ -7,8 +7,6 @@ import { apolloOptionsFactory } from '../../graphql.provider';
 
 @Injectable({ providedIn: 'root' })
 export class ApolloService {
-  token = this._tokenQuery.token;
-
   constructor(
     private _apollo: Apollo,
     private httpLink: HttpLink,
@@ -18,25 +16,17 @@ export class ApolloService {
 
   client(newToken?: string) {
     if (newToken) {
-      this._removePreviousClient();
+      const prevToken = this._tokenQuery.token();
 
-      this._createNewClient(newToken);
+      if (prevToken && Boolean(this._apollo.use(prevToken))) {
+        this._apollo.removeClient(prevToken);
+      }
+
+      this._apollo.createNamed(newToken, apolloOptionsFactory(this.httpLink));
 
       this._tokenStore.update({ token: newToken });
     }
 
-    return this._apollo.use(this.token());
-  }
-
-  private _removePreviousClient() {
-    if (this.token() && Boolean(this._apollo.use(this.token()))) {
-      this._apollo.removeClient(this.token());
-    }
-  }
-
-  private _createNewClient(token: string) {
-    this._apollo.createNamed(token, {
-      ...apolloOptionsFactory(this.httpLink),
-    });
+    return this._apollo.use(this._tokenQuery.token());
   }
 }

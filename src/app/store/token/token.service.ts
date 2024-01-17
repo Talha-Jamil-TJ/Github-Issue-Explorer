@@ -1,21 +1,11 @@
 import { Injectable } from '@angular/core';
+import { VIEWER_QUERY } from '@shared/graphql/queries/viewer.query.graphql';
 import { ApolloService } from '@shared/service/apollo.service';
-import { gql } from 'apollo-angular';
 import { finalize, map, tap } from 'rxjs';
 import { TokenStore } from './toke.store';
 
 @Injectable({ providedIn: 'root' })
 export class TokenService {
-  query = gql`
-    query MeQuery {
-      viewer {
-        login
-        name
-        avatarUrl
-      }
-    }
-  `;
-
   constructor(private _tokenStore: TokenStore, private _apolloService: ApolloService) {}
 
   getUser(token: string) {
@@ -24,7 +14,7 @@ export class TokenService {
     return this._apolloService
       .client(token)
       .query({
-        query: this.query,
+        query: VIEWER_QUERY,
         context: { headers: { Authorization: `Bearer ${token}` } },
       })
       .pipe(
