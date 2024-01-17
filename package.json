@@ -9,6 +9,7 @@
     "prettier:check": "prettier --check \"**/*.{ts,html,scss}\" --config .prettierrc",
     "prettier:write": "prettier --write \"**/*.{ts,html,scss}\" --config .prettierrc",
     "test": "nx test",
+    "test:watch": "nx test --watch",
     "prepare": "husky install"
   },
   "private": true,
@@ -25,9 +26,12 @@
     "@angular/router": "~17.0.0",
     "@datorama/akita": "^8.0.1",
     "@nx/angular": "17.2.8",
+    "apollo-angular": "^6.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.0"
+    "zone.js": "~0.14.0",
+    "@apollo/client": "^3.0.0",
+    "graphql": "^16"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~17.0.0",

@@ -1,0 +1,55 @@
+<form (ngSubmit)="onSubmit()" class="container">
+  <h1
+    [attr.data-test-id]="TestId.Heading"
+    [ngClass]="{ 'mat-headline-3': isMobile(), 'mat-headline-1': !isMobile() }"
+    class="heading"
+  >
+    GitHub Issue Explorer
+  </h1>
+
+  <p [attr.data-test-id]="TestId.Heading2" class="mat-headline-6">
+    Enter your API token to start browsing issues of public repositories.
+  </p>
+
+  <p [attr.data-test-id]="TestId.Subheading" class="mat-subtitle-1">
+    For assistance with generating your API token, please {{ isMobile() ? 'touch' : 'click' }}
+    <a
+      class="help-link"
+      href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token"
+      target="_blank"
+      >here
+    </a>
+  </p>
+
+  <mat-form-field [attr.data-test-id]="TestId.Input" appearance="outline" class="token-input">
+    <input
+      [formControl]="tokenControl"
+      aria-label="API Token"
+      matInput
+      placeholder="Ex. ghp_uhwmaUybs1p3OZ0gquXW09Kkk5zOL41wXCiv"
+    />
+
+    @if (tokenControl.getError(FormError.Required)) {
+    <mat-error [attr.data-test-id]="TestId.InputRequiredError"> API Token is <strong>required</strong> </mat-error>
+    } @else if (tokenControl.getError(FormError.InvalidToken)) {
+    <mat-error [attr.data-test-id]="TestId.InputInvalidTokenError">
+      API Token is <strong>invalid</strong>. Please use the above link for help
+    </mat-error>
+    }
+  </mat-form-field>
+
+  <button
+    [attr.data-test-id]="TestId.SubmitButton"
+    [disabled]="isLoading()"
+    class="submit-button"
+    color="primary"
+    mat-flat-button
+    type="submit"
+  >
+    <span [class.spinner]="isLoading()"></span> Start Browsing
+  </button>
+
+  <p [attr.data-test-id]="TestId.Hint" class="mat-mdc-card-subtitle">
+    The token is only stored on your machine as long as you are on this app.
+  </p>
+</form>
