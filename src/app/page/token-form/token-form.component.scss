@@ -1,0 +1,49 @@
+@import '../../shared/styles/breakpoints';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .heading {
+    @include respond-to(x-small) {
+      margin-bottom: 0;
+    }
+  }
+
+  .token-input {
+    width: 40%;
+
+    @include respond-to(large) {
+      width: 65%;
+
+      @include respond-to(medium) {
+        width: 82%;
+
+        @include respond-to(small) {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .help-link {
+    color: blue;
+    text-decoration: none;
+
+    &:hover {
+      color: darkblue;
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: red;
+    }
+  }
+
+  .submit-button {
+    height: 3rem;
+    width: 13rem;
+  }
+}

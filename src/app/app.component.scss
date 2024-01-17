@@ -1,0 +1,15 @@
+@import 'shared/styles/breakpoints';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.main-container {
+  padding: 20px;
+
+  .card {
+    height: 95vh;
+  }
+}

@@ -6,9 +6,11 @@ import { TokenStore } from './toke.store';
 
 @Injectable({ providedIn: 'root' })
 export class TokenQuery extends Query<ITokenState> {
+  isLoading = toSignal(this.selectLoading());
+
   token = toSignal(
     this.select(({ token }) => token),
-    { initialValue: null },
+    { initialValue: '' },
   );
 
   constructor(private _store: TokenStore) {
