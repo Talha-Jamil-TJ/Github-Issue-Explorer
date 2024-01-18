@@ -1,9 +1,0 @@
-type Query {
-    viewer: User
-}
-
-type User {
-    login: String
-    name: String
-    avatarUrl: String
-}
