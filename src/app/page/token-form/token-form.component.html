@@ -1,11 +1,15 @@
 <form (ngSubmit)="onSubmit()" class="container">
-  <h1
-    [attr.data-test-id]="TestId.Heading"
-    [ngClass]="{ 'mat-headline-3': isMobile(), 'mat-headline-1': !isMobile() }"
-    class="heading"
-  >
-    GitHub Issue Explorer
-  </h1>
+  <span class="header">
+    <img alt="Github logo" src="/assets/github-mark-white.svg" width="70" />
+
+    <h1
+      [attr.data-test-id]="TestId.Heading"
+      [ngClass]="{ 'mat-headline-3': isMobile(), 'mat-headline-1': !isMobile() }"
+      class="heading"
+    >
+      GitHub Issue Explorer
+    </h1>
+  </span>
 
   <p [attr.data-test-id]="TestId.Heading2" class="mat-headline-6">
     Enter your API token to start browsing issues of public repositories.
@@ -14,7 +18,7 @@
   <p [attr.data-test-id]="TestId.Subheading" class="mat-subtitle-1">
     For assistance with generating your API token, please {{ isMobile() ? 'touch' : 'click' }}
     <a
-      class="help-link"
+      class="custom-link"
       href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token"
       target="_blank"
       >here

@@ -28,13 +28,11 @@ describe('TokenService', () => {
         {
           provide: ApolloService,
           useValue: {
-            client: () => ({
-              query: (params: QueryOptions<unknown, unknown>) => {
-                queryEmitter$ = new BehaviorSubject<ApolloQueryResult<unknown>>(params as never);
+            query: (params: QueryOptions<unknown, unknown>) => {
+              queryEmitter$ = new BehaviorSubject<ApolloQueryResult<unknown>>(params as never);
 
-                return queryEmitter$;
-              },
-            }),
+              return queryEmitter$;
+            },
           },
         },
       ],
@@ -63,7 +61,7 @@ describe('TokenService', () => {
   });
 
   it('should call client() in apolloService when getUser() is called', () => {
-    const spy = spyOn(apolloService, 'client');
+    const spy = spyOn(apolloService, 'query');
 
     service.getUser(mockToken);
 

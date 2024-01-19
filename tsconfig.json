@@ -15,9 +15,9 @@
     "baseUrl": ".",
     "paths": {
       "@app/*": ["./src/app/*"],
-      "@store/*": ["./src/app/store/*"],
+      "@mock/*": ["./src/app/shared/mock/*"],
       "@shared/*": ["./src/app/shared/*"],
-      "@mock/*": ["./src/app/shared/mock/*"]
+      "@store/*": ["./src/app/store/*"]
     },
     "useDefineForClassFields": false,
     "esModuleInterop": true,

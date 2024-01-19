@@ -1,6 +1,6 @@
 import { gql } from 'apollo-angular';
 
-export const VIEWER_QUERY = gql`
+export const GET_USER = gql`
   query GetUser {
     viewer {
       login

@@ -1,0 +1,5 @@
+@if (isLoading()) {
+<mat-spinner color="accent"></mat-spinner>
+} @else { @for (repository of repositories(); track repository.id) {
+<app-repository-item [repository]="repository"></app-repository-item>
+} }
