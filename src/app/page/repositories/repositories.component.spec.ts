@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApolloService } from '@shared/service/apollo.service';
+import { of } from 'rxjs';
 import { RepositoriesComponent } from './repositories.component';
 
 describe('IssueListComponent', () => {
@@ -8,6 +10,14 @@ describe('IssueListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RepositoriesComponent],
+      providers: [
+        {
+          provide: ApolloService,
+          useValue: {
+            query: () => of(null),
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RepositoriesComponent);

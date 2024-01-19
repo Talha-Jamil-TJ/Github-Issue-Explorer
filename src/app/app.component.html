@@ -1,5 +1,9 @@
+@if (showNavbar()) {
+<app-header></app-header>
+}
+
 <main class="main-container">
-  <mat-card class="card">
+  <mat-card [class.full-length]="!showNavbar()">
     <mat-card-content>
       <router-outlet></router-outlet>
     </mat-card-content>
