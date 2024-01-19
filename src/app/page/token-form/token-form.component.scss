@@ -6,9 +6,15 @@
   align-items: center;
   gap: 20px;
 
-  .heading {
-    @include respond-to(x-small) {
-      margin-bottom: 0;
+  .header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+
+    .heading {
+      @include respond-to(x-small) {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -25,20 +31,6 @@
           width: 100%;
         }
       }
-    }
-  }
-
-  .help-link {
-    color: blue;
-    text-decoration: none;
-
-    &:hover {
-      color: darkblue;
-      text-decoration: underline;
-    }
-
-    &:active {
-      color: red;
     }
   }
 

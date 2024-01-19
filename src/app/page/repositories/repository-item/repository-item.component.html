@@ -1,0 +1,41 @@
+<div class="title">
+  <img [src]="repository().owner.avatarUrl" [width]="25" alt="avatar" height="25" />
+
+  <a [href]="repository().url" target="_blank">{{ repository().nameWithOwner }}</a>
+
+  @if (repository().isArchived) {
+  <span class="public-archive-pill">Public archive</span>
+  }
+</div>
+
+<div class="body">
+  <span [innerHTML]="repository().descriptionHTML"></span>
+</div>
+
+@if (topicNodes.length) {
+<div class="topics">
+  @for (topicNode of topicNodes; track topicNode) {
+  <a [href]="topicNode.url" class="topic-pill" target="_blank">{{ topicNode.topic.name }}</a>
+  }
+</div>
+}
+
+<div class="info">
+  @if (repository().primaryLanguage; as language) {
+  <div class="info-item">
+    <span class="color" [style.background-color]="language?.color"></span>
+    <span>{{ language?.name }}</span>
+  </div>
+
+  <span class="divider">•</span>
+  }
+
+  <span class="info-item">
+    <mat-icon aria-hidden="false" fontIcon="star"></mat-icon>
+    <span>{{ repository().stargazers.totalCount | shortNumber }}</span>
+  </span>
+
+  <span class="divider">•</span>
+
+  <span class="info-item">Updated on {{ repository().updatedAt | date }}</span>
+</div>

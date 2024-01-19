@@ -4,6 +4,7 @@ import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 import { FormError } from '@shared/enum/error.enum';
 import { BreakpointService } from '@shared/service/breakpoint.service';
 import { TokenQuery } from '@store/token/token.query';
@@ -31,9 +32,10 @@ export class TokenFormComponent implements OnInit {
     private _breakpointService: BreakpointService,
     private _tokenService: TokenService,
     private _tokenQuery: TokenQuery,
+    private _router: Router,
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this._setTokenControl();
   }
 
@@ -43,7 +45,9 @@ export class TokenFormComponent implements OnInit {
     }
 
     this._tokenService.getUser(this.tokenControl.value ?? '').subscribe({
-      next: () => {},
+      next: () => {
+        this._router.navigate(['repositories']);
+      },
       error: () => {
         this.tokenControl.setErrors({ ...this.tokenControl.errors, [this.FormError.InvalidToken]: true });
       },

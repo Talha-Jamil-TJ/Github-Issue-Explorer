@@ -28503,3 +28503,38 @@ export type WorkflowsParametersInput = {
 export type GetUserQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserQuery = { viewer: { login: string } };
+
+export type RepositoriesSearchQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type RepositoriesSearchQuery = {
+  search: {
+    repositoryCount: number;
+    pageInfo: {
+      endCursor?: string | null;
+      startCursor?: string | null;
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+    };
+    nodes?: Array<
+      | {
+          id: string;
+          name: string;
+          nameWithOwner: string;
+          isArchived: boolean;
+          url: any;
+          updatedAt: any;
+          descriptionHTML: any;
+          owner: { login: string; avatarUrl: any } | { login: string; avatarUrl: any };
+          primaryLanguage?: { name: string; color?: string | null } | null;
+          stargazers: { totalCount: number };
+          repositoryTopics: { nodes?: Array<{ url: any; topic: { name: string } } | null> | null };
+        }
+      | {}
+      | null
+    > | null;
+  };
+};

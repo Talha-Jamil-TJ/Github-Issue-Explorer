@@ -1,3 +1,3 @@
-export interface ITokenState {
+export interface TokenState {
   token: string;
 }
