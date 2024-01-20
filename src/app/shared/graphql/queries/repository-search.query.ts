@@ -1,8 +1,15 @@
 import { gql } from 'apollo-angular';
 
 export const REPOSITORY_SEARCH = gql`
-  query RepositoriesSearch($first: Int, $after: String, $before: String) {
-    search(query: "is:public sort:stars-desc", type: REPOSITORY, first: $first, after: $after, before: $before) {
+  query RepositoriesSearch($first: Int, $last: Int, $after: String, $before: String) {
+    search(
+      query: "is:public sort:stars-desc"
+      type: REPOSITORY
+      first: $first
+      last: $last
+      after: $after
+      before: $before
+    ) {
       pageInfo {
         endCursor
         startCursor

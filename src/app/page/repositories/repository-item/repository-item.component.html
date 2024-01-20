@@ -9,12 +9,12 @@
 </div>
 
 <div class="body">
-  <span [innerHTML]="repository().descriptionHTML"></span>
+  <span [innerHTML]="descriptionHTML()"></span>
 </div>
 
-@if (topicNodes.length) {
+@if (topicNodes().length) {
 <div class="topics">
-  @for (topicNode of topicNodes; track topicNode) {
+  @for (topicNode of topicNodes(); track topicNode) {
   <a [href]="topicNode.url" class="topic-pill" target="_blank">{{ topicNode.topic.name }}</a>
   }
 </div>

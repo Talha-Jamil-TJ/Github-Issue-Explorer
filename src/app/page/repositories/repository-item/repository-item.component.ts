@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, input } from '@angular/core';
+import { Component, computed, input, OnInit, Signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Repository, RepositoryTopic } from '@shared/interface/generated.interface';
 import { ShortNumberPipe } from '@shared/pipe/short-number.pipe';
 
@@ -11,14 +12,16 @@ import { ShortNumberPipe } from '@shared/pipe/short-number.pipe';
   templateUrl: './repository-item.component.html',
   styleUrl: './repository-item.component.scss',
 })
-export class RepositoryItemComponent {
+export class RepositoryItemComponent implements OnInit {
   repository = input.required<Repository>();
 
-  topicNodes: RepositoryTopic[] = [];
+  descriptionHTML!: Signal<SafeHtml>;
+  topicNodes!: Signal<RepositoryTopic[]>;
 
-  constructor() {
-    effect(() => {
-      this.topicNodes = (this.repository().repositoryTopics.nodes ?? []) as RepositoryTopic[];
-    });
+  constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit() {
+    this.descriptionHTML = computed(() => this.sanitizer.bypassSecurityTrustHtml(this.repository().descriptionHTML));
+    this.topicNodes = computed(() => (this.repository().repositoryTopics.nodes ?? []) as RepositoryTopic[]);
   }
 }
