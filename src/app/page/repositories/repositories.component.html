@@ -3,3 +3,5 @@
 } @else { @for (repository of repositories(); track repository.id) {
 <app-repository-item [repository]="repository"></app-repository-item>
 } }
+
+<mat-paginator (page)="handlePageEvent($event)" [length]="repositoryCount()" [pageSize]="pageSize"> </mat-paginator>

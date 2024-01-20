@@ -28506,6 +28506,7 @@ export type GetUserQuery = { viewer: { login: string } };
 
 export type RepositoriesSearchQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
 }>;
