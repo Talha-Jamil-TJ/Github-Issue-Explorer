@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { RepositoryItemComponent } from '@shared/component/repository-item/repository-item.component';
 import { RepositoryQuery } from '@store/repository/repository.query';
 import { RepositoryService } from '@store/repository/repository.service';
-import { RepositoryItemComponent } from './repository-item/repository-item.component';
 
 @Component({
   selector: 'app-repositories',
@@ -13,7 +13,7 @@ import { RepositoryItemComponent } from './repository-item/repository-item.compo
   templateUrl: './repositories.component.html',
   styleUrl: './repositories.component.scss',
 })
-export class RepositoriesComponent implements OnInit {
+export class RepositoriesComponent {
   isLoading = this._repoQuery.isLoading;
   repositories = this._repoQuery.repositories;
   repositoryCount = this._repoQuery.repositoryCount;
@@ -23,23 +23,21 @@ export class RepositoriesComponent implements OnInit {
 
   constructor(private _repoQuery: RepositoryQuery, private _repoService: RepositoryService) {}
 
-  ngOnInit(): void {
-    this._repoService.getRepositories({ first: this.pageSize, after: null, before: null });
-  }
-
   handlePageEvent({ pageSize, previousPageIndex, pageIndex }: PageEvent) {
     const isForward = pageIndex > (previousPageIndex ?? 0);
 
-    if (isForward) {
-      this._repoService.getRepositories({
-        first: pageSize,
-        after: this.pageInfo()?.endCursor,
-      });
-    } else {
-      this._repoService.getRepositories({
-        last: pageSize,
-        before: this.pageInfo()?.startCursor,
-      });
-    }
+    this._repoService
+      .getRepositories(
+        isForward
+          ? {
+              first: pageSize,
+              after: this.pageInfo()?.endCursor,
+            }
+          : {
+              last: pageSize,
+              before: this.pageInfo()?.startCursor,
+            },
+      )
+      .subscribe();
   }
 }

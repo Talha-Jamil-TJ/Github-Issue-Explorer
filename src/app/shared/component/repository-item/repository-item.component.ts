@@ -1,19 +1,21 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, computed, input, OnInit, Signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Repository, RepositoryTopic } from '@shared/interface/generated.interface';
-import { ShortNumberPipe } from '@shared/pipe/short-number.pipe';
+import { RouterLink } from '@angular/router';
+import { Repository, RepositoryTopic } from '../../interface/generated.interface';
+import { ShortNumberPipe } from '../../pipe/short-number.pipe';
 
 @Component({
   selector: 'app-repository-item',
   standalone: true,
-  imports: [CommonModule, MatIcon, ShortNumberPipe],
+  imports: [CommonModule, MatIcon, ShortNumberPipe, RouterLink, NgOptimizedImage],
   templateUrl: './repository-item.component.html',
   styleUrl: './repository-item.component.scss',
 })
 export class RepositoryItemComponent implements OnInit {
   repository = input.required<Repository>();
+  isLocalNavigation = input.required<boolean>();
 
   descriptionHTML!: Signal<SafeHtml>;
   topicNodes!: Signal<RepositoryTopic[]>;

@@ -6,7 +6,7 @@ import { RepositoryStore } from './repository.store';
 
 @Injectable({ providedIn: 'root' })
 export class RepositoryQuery extends Query<RepositoryState> {
-  isLoading = toSignal(this.selectLoading());
+  isLoading = toSignal(this.selectLoading(), { initialValue: false });
 
   pageInfo = toSignal(
     this.select(({ pageInfo }) => pageInfo),

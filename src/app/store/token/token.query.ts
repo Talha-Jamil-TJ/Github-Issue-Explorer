@@ -6,7 +6,7 @@ import { TokenStore } from './toke.store';
 
 @Injectable({ providedIn: 'root' })
 export class TokenQuery extends Query<TokenState> {
-  isLoading = toSignal(this.selectLoading());
+  isLoading = toSignal(this.selectLoading(), { initialValue: false });
 
   token = toSignal(
     this.select(({ token }) => token),

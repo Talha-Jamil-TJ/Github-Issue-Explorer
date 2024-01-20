@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, Signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { FormError } from '@shared/enum/error.enum';
 import { BreakpointService } from '@shared/service/breakpoint.service';
+import { RepositoryQuery } from '@store/repository/repository.query';
 import { TokenQuery } from '@store/token/token.query';
 import { TokenService } from '@store/token/token.service';
 import { TokenFormTestId } from './token-form-test-id.enum';
@@ -23,13 +24,14 @@ export class TokenFormComponent implements OnInit {
 
   isMobile = this._breakpointService.isMobile;
 
-  isLoading = this._tokenQuery.isLoading;
+  isLoading!: Signal<boolean>;
 
   TestId = TokenFormTestId;
   FormError = FormError;
 
   constructor(
     private _breakpointService: BreakpointService,
+    private _repoQuery: RepositoryQuery,
     private _tokenService: TokenService,
     private _tokenQuery: TokenQuery,
     private _router: Router,
@@ -37,6 +39,7 @@ export class TokenFormComponent implements OnInit {
 
   ngOnInit() {
     this._setTokenControl();
+    this._setIsLoading();
   }
 
   onSubmit() {
@@ -52,6 +55,10 @@ export class TokenFormComponent implements OnInit {
         this.tokenControl.setErrors({ ...this.tokenControl.errors, [this.FormError.InvalidToken]: true });
       },
     });
+  }
+
+  private _setIsLoading() {
+    this.isLoading = computed(() => this._tokenQuery.isLoading() || this._repoQuery.isLoading());
   }
 
   private _setTokenControl() {
