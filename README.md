@@ -87,7 +87,7 @@ Execute unit tests with:
 
 Overview of the branch organization:
 
-- `master`: Latest stable changes.
+- `main`: Latest stable changes.
 
 ### Component and service with Unit Tests
 
