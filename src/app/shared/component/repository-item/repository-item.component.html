@@ -1,7 +1,13 @@
 <div class="title">
-  <img [src]="repository().owner.avatarUrl" [width]="25" alt="avatar" height="25" />
+  <img [ngSrc]="repository().owner.avatarUrl" [width]="25" alt="avatar" height="25" />
 
-  <a [href]="repository().url" target="_blank">{{ repository().nameWithOwner }}</a>
+  <ng-container>
+    @if (isLocalNavigation()) {
+    <a [routerLink]="['/', repository().owner.login, repository().name]">{{ repository().nameWithOwner }}</a>
+    } @else {
+    <a [href]="repository().url" target="_blank">{{ repository().nameWithOwner }}</a>
+    }
+  </ng-container>
 
   @if (repository().isArchived) {
   <span class="public-archive-pill">Public archive</span>

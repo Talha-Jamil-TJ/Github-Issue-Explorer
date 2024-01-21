@@ -1,0 +1,77 @@
+@import '../../../../shared/styles/breakpoints';
+
+:host {
+  padding: 10px;
+  border: var(--mat-divider-width) solid var(--mat-divider-color);
+  border-radius: 6px;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: #ffffff;
+}
+
+.row-1 {
+  display: flex;
+  gap: 10px;
+
+  .column {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+
+      @include respond-to(medium) {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .pill {
+        font-size: 12px;
+        display: inline-block;
+        padding: 0.2em 1em;
+        border-radius: 9999px;
+      }
+    }
+  }
+}
+
+.comment-count {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.muted {
+  color: rgb(125, 133, 144);
+  font-size: 12px;
+
+  @include respond-to(medium) {
+    margin-top: 10px;
+  }
+
+  > a {
+    color: rgb(125, 133, 144);
+  }
+}
+
+.icon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+  margin-top: 7px;
+
+  &.closed {
+    color: #a371f7;
+  }
+
+  &.open {
+    color: green;
+  }
+}

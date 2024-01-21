@@ -5,9 +5,7 @@
   flex-direction: column;
   min-width: 0;
   border-radius: 6px;
-  border-color: rgb(48, 54, 61);
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid rgb(48, 54, 61);
   padding: 16px;
   gap: 16px;
 }
@@ -19,18 +17,15 @@
 }
 
 .public-archive-pill {
-  -webkit-box-align: center;
   align-items: center;
   background-color: transparent;
-  border-width: 1px;
+  border: 1px solid rgb(158, 106, 3);
   border-radius: 999px;
-  border-style: solid;
   display: inline-flex;
   font-weight: 600;
   font-size: 12px;
   line-height: 1;
   white-space: nowrap;
-  border-color: rgb(158, 106, 3);
   color: rgb(210, 153, 34);
   height: 20px;
   padding: 0 7px;
@@ -74,9 +69,7 @@
 
     .color {
       border-radius: 8px;
-      border-style: solid;
-      border-width: 1px;
-      border-color: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       width: 10px;
       height: 10px;
     }

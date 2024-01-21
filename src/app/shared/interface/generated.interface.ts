@@ -28504,6 +28504,83 @@ export type GetUserQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserQuery = { viewer: { login: string } };
 
+export type RepositoryDetailQueryVariables = Exact<{
+  name: Scalars['String']['input'];
+  owner: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+export type RepositoryDetailQuery = {
+  repository?: {
+    id: string;
+    name: string;
+    nameWithOwner: string;
+    isArchived: boolean;
+    url: any;
+    updatedAt: any;
+    descriptionHTML: any;
+    owner: { login: string; avatarUrl: any } | { login: string; avatarUrl: any };
+    primaryLanguage?: { name: string; color?: string | null } | null;
+    stargazers: { totalCount: number };
+    repositoryTopics: { nodes?: Array<{ url: any; topic: { name: string } } | null> | null };
+    issues: {
+      totalCount: number;
+      pageInfo: { startCursor?: string | null; endCursor?: string | null };
+      nodes?: Array<{
+        id: string;
+        number: number;
+        titleHTML: string;
+        url: any;
+        createdAt: any;
+        closedAt?: any | null;
+        author?:
+          | { login: string; url: any }
+          | { login: string; url: any }
+          | { login: string; url: any }
+          | { login: string; url: any }
+          | { login: string; url: any }
+          | null;
+        labels?: { nodes?: Array<{ color: string; name: string } | null> | null } | null;
+        comments: { totalCount: number };
+      } | null> | null;
+    };
+  } | null;
+};
+
+export type RepositoryIssuesQueryVariables = Exact<{
+  name: Scalars['String']['input'];
+  owner: Scalars['String']['input'];
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+export type RepositoryIssuesQuery = {
+  repository?: {
+    issues: {
+      pageInfo: { startCursor?: string | null; endCursor?: string | null };
+      nodes?: Array<{
+        id: string;
+        number: number;
+        titleHTML: string;
+        url: any;
+        createdAt: any;
+        closedAt?: any | null;
+        author?:
+          | { login: string; url: any }
+          | { login: string; url: any }
+          | { login: string; url: any }
+          | { login: string; url: any }
+          | { login: string; url: any }
+          | null;
+        labels?: { nodes?: Array<{ color: string; name: string } | null> | null } | null;
+        comments: { totalCount: number };
+      } | null> | null;
+    };
+  } | null;
+};
+
 export type RepositoriesSearchQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
