@@ -28,4 +28,8 @@ export const appRoutes: Route[] = [
         ({ RepositoryDetailComponent }) => RepositoryDetailComponent,
       ),
   },
+  {
+    path: '**',
+    redirectTo: '/',
+  },
 ];
