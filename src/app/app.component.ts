@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe((events) => {
         if (events instanceof NavigationEnd) {
-          this.showNavbar.set(events.url !== '/');
+          this.showNavbar.set(events.urlAfterRedirects !== '/');
         }
       });
   }
