@@ -20,6 +20,7 @@ Key packages and technologies used in this project:
 - [Angular](https://angular.io/) • [v17](<(https://blog.angular.io/introducing-angular-v17-4d7033312e4b)>) - The core framework.
 - [Angular Material](https://material.angular.io/) - For UI components.
 - [Akita](https://opensource.salesforce.com/akita/docs/angular/architecture) - State management solution.
+- [Jest](https://jestjs.io/docs/testing-frameworks) - Unit testing solution
 
 ## Live Demo
 
